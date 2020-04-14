@@ -1,13 +1,13 @@
 <?php
 
-// Get data from webhook
-$json_data = file_get_contents("php://input");
-if (empty($json_data))
-    die();
-
 // Get config variables
 require __DIR__ . '/config.php';
 require __DIR__ . '/vendor/autoload.php';
+
+// Get data from webhook
+$json_data = file_get_contents("php://input");
+if (empty($json_data))
+    die(file_get_contents('error.html'));
 
 // Log webhook action
 $current = date('[j/M/Y H:i:s]'). " $json_data \n";
