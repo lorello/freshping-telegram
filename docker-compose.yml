@@ -11,5 +11,5 @@ services:
       BOT_USERNAME: 'YOURBOT_USERNAME_bot'
       CHAT_ID: 0
       ANY_STATE: 1
-      LOGFILE: 'php://stdout'
+      LOG_FILE: 'php://stdout'
 

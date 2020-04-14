@@ -5,14 +5,14 @@ $json_data = file_get_contents("php://input");
 if (empty($json_data))
     die();
 
-// Log webhook action
-$file = LOGFILE;
-$current = date('[j/M/Y H:i:s]'). " $json_data \n";
-file_put_contents($file, $current, FILE_APPEND);
-
 // Get config variables
-require_once __DIR__ . '/config.php';
-require_once __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/config.php';
+require __DIR__ . '/vendor/autoload.php';
+
+// Log webhook action
+$current = date('[j/M/Y H:i:s]'). " $json_data \n";
+file_put_contents(LOG_FILE, $current, FILE_APPEND);
+
 
 $telegram = new Longman\TelegramBot\Telegram(BOT_TOKEN, BOT_USERNAME);
 use Longman\TelegramBot\Request;

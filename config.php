@@ -2,7 +2,7 @@
 
 ## TelegramBot info
 define('BOT_TOKEN', getenv('BOT_TOKEN'));
-define('BOT_USERNAME', getenv('BOT_TOKEN'));
+define('BOT_USERNAME', getenv('BOT_USERNAME'));
 
 ## You can use you account or channel or gtoup for geting notification.
 // Get you chat_id from @FalconGate_Bot
@@ -15,4 +15,4 @@ define('ANY_STATE', getenv('ANY_STATE') ?: false);
 // You must use your monitoring website name.
 $exceptionList = array();
 
-define('LOGFILE', 'access.log');
+define('LOG_FILE', getenv('LOG_FILE') ?: 'access.log');
