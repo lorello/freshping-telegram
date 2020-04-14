@@ -6,10 +6,9 @@ if (empty($json_data))
     die();
 
 // Log webhook action
-$file = 'access.log';
-$current = file_get_contents($file);
-$current .= date('[j/M/Y H:i:s]'). " $json_data \n";
-file_put_contents($file, $current);
+$file = LOGFILE;
+$current = date('[j/M/Y H:i:s]'). " $json_data \n";
+file_put_contents($file, $current, FILE_APPEND);
 
 // Get config variables
 require_once __DIR__ . '/config.php';
@@ -44,5 +43,3 @@ if ( ! in_array( $check_name, $exceptionList ) ) {
     }
 }
 
-
-?>

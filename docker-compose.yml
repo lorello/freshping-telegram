@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+
+  auth:
+    image: app:latest
+    ports: [ '2015:2015' ]
+    build: .
+    environment:
+      BOT_TOKEN: '000000000:XXXXxxXXXxX0xxXX-xxX0_00xxxXxX0XXx'
+      BOT_USERNAME: 'YOURBOT_USERNAME_bot'
+      CHAT_ID: 0
+      ANY_STATE: 1
+      LOGFILE: 'php://stdout'
+
