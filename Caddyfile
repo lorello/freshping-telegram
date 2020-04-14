@@ -1,5 +1,4 @@
 0.0.0.0
-browse
 root /srv/app
 
 fastcgi / 127.0.0.1:9000 php {
@@ -17,8 +16,6 @@ rewrite {
 errors stdout {
   * error.html
 }
-
-
 # Security-HTTP-Header to reduce exposure to drive-by downloads 
 # and the risks of clever-named user uploaded content that could be 
 # treated as a different content-type (e.g. as executable).
@@ -30,7 +27,7 @@ header / {
 gzip
 
 log stdout
-on startup php-fpm7 --nodaemonize
+on startup php-fpm7 --nodaemonize --force-stderr --define error_log=/proc/28/fd/2 --define catch_workers_output=yes --define ping.path=/ping 
 
 
 

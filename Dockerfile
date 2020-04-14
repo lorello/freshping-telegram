@@ -6,7 +6,7 @@ WORKDIR /srv/app
 
 COPY composer.json composer.lock ./
 
-RUN composer install
+RUN composer install --no-progress --optimize-autoloader
 
 COPY *.php *.html ./
 

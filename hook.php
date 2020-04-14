@@ -6,16 +6,23 @@ require __DIR__ . '/vendor/autoload.php';
 
 // Get data from webhook
 $json_data = file_get_contents("php://input");
-if (empty($json_data))
-    die(file_get_contents('error.html'));
+
+#if (empty($json_data))
+#    die(file_get_contents('error.html'));
 
 // Log webhook action
 $current = date('[j/M/Y H:i:s]'). " $json_data \n";
 file_put_contents(LOG_FILE, $current, FILE_APPEND);
 
-
 $telegram = new Longman\TelegramBot\Telegram(BOT_TOKEN, BOT_USERNAME);
 use Longman\TelegramBot\Request;
+
+$data = [
+    'chat_id' => CHAT_ID,
+    'text'    => 'prova',
+];
+
+$result = Request::sendMessage($data);
 
 $data = json_decode($json_data);
 $check_state = $data->webhook_event_data->check_state_name;
@@ -36,10 +43,14 @@ $data = [
 ];
 
 if ( ! in_array( $check_name, $exceptionList ) ) {
+    file_put_contents(LOG_FILE, $message, FILE_APPEND);
     if ( ANY_STATE ) {
-        $resutl = Request::sendMessage($data);
+        $result = Request::sendMessage($data);
+        file_put_contents(LOG_FILE, $result, FILE_APPEND);
     } elseif ( $check_state == 'Not Responding' ) {
-        $resutl = Request::sendMessage($data);
+        $result = Request::sendMessage($data);
+        file_put_contents(LOG_FILE, $result, FILE_APPEND);
     }
 }
+
 
