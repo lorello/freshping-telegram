@@ -8,6 +8,5 @@ COPY composer.json composer.lock ./
 
 RUN composer install --no-scripts
 
-COPY hook.php ./
-COPY *.html ./
+COPY *.php *.html ./
 
